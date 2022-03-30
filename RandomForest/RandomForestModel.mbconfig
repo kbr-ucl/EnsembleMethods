@@ -1,0 +1,228 @@
+﻿{
+  "TrainingTime": 10,
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\Dropbox\\SourceCode\\MS-AI\\EnsembleMethods\\Iris.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Id",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "SepalLengthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "SepalWidthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "PetalLengthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "PetalWidthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Species",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 1
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 1,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.33335928973211915,
+        "RuntimeInSeconds": 0.25600001215934753
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.55010192083906584,
+        "RuntimeInSeconds": 0.89499998092651367
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.94772358218649777,
+        "RuntimeInSeconds": 1.5169999599456787
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.94147358218649779,
+        "RuntimeInSeconds": 1.8459999561309814
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.89616567260008506,
+        "RuntimeInSeconds": 0.31600001454353333
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.94854641131815032,
+        "RuntimeInSeconds": 0.1379999965429306
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.32095327469452517,
+        "RuntimeInSeconds": 0.26600000262260437
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmMulti",
+        "Score": 0.96091802663094228,
+        "RuntimeInSeconds": 0.14300000667572021
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.94147358218649779,
+        "RuntimeInSeconds": 1.4650000333786011
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.67051190301375385,
+        "RuntimeInSeconds": 0.97899997234344482
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.9454590894328746,
+        "RuntimeInSeconds": 0.21899999678134918
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmMulti",
+        "Score": 0.96091802663094228,
+        "RuntimeInSeconds": 0.2070000022649765
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.78997684695541071,
+        "RuntimeInSeconds": 0.10599999874830246
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.93559122924532134,
+        "RuntimeInSeconds": 1.406999945640564
+      }
+    ],
+    "Pipeline": {
+      "parameter": {
+        "0": {
+          "OutputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ],
+          "InputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ]
+        },
+        "1": {
+          "InputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ],
+          "OutputColumnName": "Features"
+        },
+        "2": {
+          "OutputColumnName": "Species",
+          "InputColumnName": "Species"
+        },
+        "3": {
+          "NumberOfLeaves": 4,
+          "MinimumExampleCountPerLeaf": 20,
+          "LearningRate": 1.0,
+          "NumberOfTrees": 4,
+          "SubsampleFraction": 1.0,
+          "MaximumBinCountPerFeature": 256,
+          "FeatureFraction": 1.0,
+          "L1Regularization": 2E-10,
+          "L2Regularization": 1.0,
+          "LabelColumnName": "Species",
+          "FeatureColumnName": "Features"
+        },
+        "4": {
+          "OutputColumnName": "PredictedLabel",
+          "InputColumnName": "PredictedLabel"
+        }
+      },
+      "estimators": [
+        "ReplaceMissingValues",
+        "Concatenate",
+        "MapValueToKey",
+        "LightGbmMulti",
+        "MapKeyToValue"
+      ]
+    },
+    "MetricName": "MicroAccuracy"
+  },
+  "Type": "TrainingConfig",
+  "Version": 2
+}

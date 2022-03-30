@@ -1,0 +1,160 @@
+﻿{
+  "TrainingTime": 10,
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\Dropbox\\SourceCode\\MS-AI\\EnsembleMethods\\Iris.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Id",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "SepalLengthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "SepalWidthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "PetalLengthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "PetalWidthCm",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "Species",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 1
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 1,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.33335928973211915,
+        "RuntimeInSeconds": 0.60100001096725464
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.94147358218649779,
+        "RuntimeInSeconds": 5.9079999923706055
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.55010192083906584,
+        "RuntimeInSeconds": 2.3190000057220459
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.94854641131815032,
+        "RuntimeInSeconds": 0.453000009059906
+      }
+    ],
+    "Pipeline": {
+      "parameter": {
+        "0": {
+          "OutputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ],
+          "InputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ]
+        },
+        "1": {
+          "InputColumnNames": [
+            "SepalLengthCm",
+            "SepalWidthCm",
+            "PetalLengthCm",
+            "PetalWidthCm"
+          ],
+          "OutputColumnName": "Features"
+        },
+        "2": {
+          "OutputColumnName": "Species",
+          "InputColumnName": "Species"
+        },
+        "3": {
+          "OutputColumnNames": [
+            "Features"
+          ],
+          "InputColumnNames": [
+            "Features"
+          ]
+        },
+        "4": {
+          "L1Regularization": 1.0,
+          "L2Regularization": 1.0,
+          "LabelColumnName": "Species",
+          "FeatureColumnName": "Features"
+        },
+        "5": {
+          "OutputColumnName": "PredictedLabel",
+          "InputColumnName": "PredictedLabel"
+        }
+      },
+      "estimators": [
+        "ReplaceMissingValues",
+        "Concatenate",
+        "MapValueToKey",
+        "NormalizeMinMax",
+        "LbfgsMaximumEntropyMulti",
+        "MapKeyToValue"
+      ]
+    },
+    "MetricName": "MicroAccuracy"
+  },
+  "Type": "TrainingConfig",
+  "Version": 2
+}
